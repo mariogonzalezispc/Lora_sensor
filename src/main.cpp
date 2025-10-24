@@ -56,6 +56,7 @@ void setup()
     Serial.println("Verifica las conexiones I2C (SDA=GPIO4, SCL=GPIO5)");
     sensorOK = false;
   }
+        Serial.println("=================================");
 }
 
 void loop()
@@ -91,7 +92,6 @@ void loop()
       float humedad = humidity.relative_humidity; // Humedad relativa en %
 
       // Publicar por serial
-      Serial.println("=================================");
       Serial.print("Temperatura: ");
       Serial.print(temperatura);
       Serial.println(" °C");
