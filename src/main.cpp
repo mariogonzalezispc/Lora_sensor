@@ -25,7 +25,6 @@ void setup()
   // Inicializar Serial
   Serial.begin(9600);
   delay(100);
-  Serial.println("\n\n=== ESP8266 Iniciando ===");
 
   // Configurar pines de LEDs
   pinMode(LED1, OUTPUT);
