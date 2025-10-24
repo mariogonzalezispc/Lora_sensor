@@ -9,7 +9,7 @@
 #define DI 12
 #define RO 13
 
-// Pines I2C por defecto ESP8266: SDA=GPIO4(D2), SCL=GPIO5(D1)
+// Pines I2C  ESP8266: SDA=GPIO4(D2), SCL=GPIO5(D1)
 
 // Variables
 Adafruit_AHTX0 aht;
@@ -38,7 +38,7 @@ void setup()
   pinMode(DE_RE, OUTPUT);
   pinMode(DI, OUTPUT);
   pinMode(RO, INPUT);
-  digitalWrite(DE_RE, LOW); // Modo recepción por defecto
+  digitalWrite(DE_RE, LOW); // Modo recepción por defecto tiene Resistencia de 10K PullDown
   Serial.println("MAX485 configurado - DE/RE: GPIO16, DI: GPIO12, RO: GPIO13");
 
   // Inicializar I2C
@@ -57,8 +57,6 @@ void setup()
     Serial.println("Verifica las conexiones I2C (SDA=GPIO4, SCL=GPIO5)");
     sensorOK = false;
   }
-
-  Serial.println("=== Setup completado ===\n");
 }
 
 void loop()
@@ -141,12 +139,6 @@ void loop()
        * - temp.timestamp: Marca de tiempo de la lectura (uint32_t)
        * - humidity.timestamp: Marca de tiempo de la lectura (uint32_t)
        *
-       * EJEMPLO DE USO DE reset():
-       * if (!aht.getEvent(&humidity, &temp)) {
-       *   Serial.println("Error en lectura, reseteando sensor...");
-       *   aht.reset();
-       *   delay(100);
-       * }
        *
        * NOTAS IMPORTANTES:
        * - El AHT10 tiene precisión de ±0.3°C para temperatura
@@ -154,7 +146,7 @@ void loop()
        * - Tiempo de respuesta típico: 5 segundos para humedad
        * - Rango de medición temperatura: -40°C a +85°C
        * - Rango de medición humedad: 0% a 100% RH
-       * - Dirección I2C fija: 0x38 (no se puede cambiar)
+       * - Dirección I2C: 0x38 o 0x39
        */
     }
     else
