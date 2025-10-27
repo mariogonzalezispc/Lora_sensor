@@ -67,6 +67,7 @@ void loop()
 
       if (sensorOK) // Si el sensor está OK, lee y envía respuesta
       {
+        digitalWrite(LED_ROJO, LOW);
         sensors_event_t hum, temp;
         aht.getEvent(&hum, &temp);
 
@@ -83,14 +84,14 @@ void loop()
         // Serial.println(" %");
         Serial.print("Enviando respuesta RS485: "); //
         Serial.println(respuesta);
+        delay(100);
         // Enviar por RS485
         digitalWrite(DE_RE, HIGH); // Modo transmisión
-        digitalWrite(LED_ROJO, LOW);
         digitalWrite(LED_VERDE, HIGH);
-        delay(2);
+        delay(20);
         rs485.print(respuesta);
         rs485.flush();
-        delay(2);
+        delay(20);
         digitalWrite(DE_RE, LOW); // Vuelve a recepción
         digitalWrite(LED_VERDE, LOW);
       }
